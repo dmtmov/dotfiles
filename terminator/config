@@ -1,0 +1,165 @@
+[global_config]
+  handle_size = 3
+  custom_url_handler = /usr/bin/google-chrome-beta
+  title_hide_sizetext = True
+  title_transmit_fg_color = "#000000"
+  title_inactive_fg_color = "#ffffff"
+  suppress_multiple_term_dialog = True
+  title_transmit_bg_color = "#e7e7e7"
+  title_inactive_bg_color = "#252525"
+[keybindings]
+  split_horiz = <Primary><Shift>h
+  split_vert = <Primary><Shift>v
+[profiles]
+  [[monokai]]
+    background_image = None
+    use_system_font = False
+    palette = "#000000:#f92672:#6cc72c:#fe9720:#5f91ef:#9358fe:#36af90:#8c8c8c:#4c4c4c:#ff80f4:#a7e22e:#ffee99:#5fd9ef:#ae82fe:#66efd5:#c7cece"
+    foreground_color = "#ffffff"
+    font = DejaVu Sans Mono 10
+    background_color = "#0d0d0d"
+    allow_bold = False
+  [[Solarized Light]]
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    background_color = "#fdf6e3"
+    background_image = None
+    foreground_color = "#657b83"
+  [[Spacedust]]
+    palette = "#000000:#dc322f:#56db3a:#ff8400:#0084d4:#b729d9:#ccccff:#ffffff:#1b1d21:#dc322f:#56db3a:#ff8400:#0084d4:#b729d9:#ccccff:#ffffff"
+    background_image = None
+    cursor_color = "#dc322f"
+    foreground_color = "#ffffff"
+  [[Monokai Soda]]
+    scrollbar_position = hidden
+    palette = "#1a1a1a:#f4005f:#98e024:#fa8419:#9d65ff:#f4005f:#58d1eb:#c4c5b5:#625e4c:#f4005f:#98e024:#e0d561:#9d65ff:#f4005f:#58d1eb:#f6f6ef"
+    background_image = None
+    use_system_font = False
+    cursor_color = "#f6f7ec"
+    foreground_color = "#c4c5b5"
+    show_titlebar = False
+    font = Ubuntu Mono 12
+    background_color = "#1a1a1a"
+    scrollback_infinite = True
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#1a1a1a:#f4005f:#98e024:#fa8419:#9d65ff:#f4005f:#58d1eb:#c4c5b5:#625e4c:#f4005f:#98e024:#e0d561:#9d65ff:#f4005f:#58d1eb:#f6f6ef"
+    background_image = None
+    background_darkness = 0.87
+    use_system_font = False
+    cursor_color = "#f6f7ec"
+    foreground_color = "#c4c5b5"
+    show_titlebar = False
+    font = Ubuntu Mono 12
+    background_color = "#2d2d2d"
+    scrollback_infinite = True
+  [[Dracula]]
+    palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
+    background_color = "#1e1f29"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    foreground_color = "#f8f8f2"
+  [[Molokai]]
+    palette = "#121212:#7325FA:#23E298:#60D4DF:#D08010:#FF0087:#D0A843:#BBBBBB:#555555:#9D66F6:#5FE0B1:#6DF2FF:#FFAF00:#FF87AF:#FFCE51:#FFFFFF"
+    background_color = "#121212"
+    background_image = None
+    cursor_color = "#BBBBBB"
+    foreground_color = "#BBBBBB"
+  [[Hybrid]]
+    palette = "#2a2e33:#b84d51:#b3bf5a:#e4b55e:#6e90b0:#a17eac:#7fbfb4:#b5b9b6:#1d1f22:#8d2e32:#798431:#e58a50:#4b6b88:#6e5079:#4d7b74:#5a626a"
+    background_color = "#161719"
+    background_image = None
+    cursor_color = "#b7bcba"
+    foreground_color = "#b7bcba"
+  [[PencilDark]]
+    palette = "#212121:#c30771:#10a778:#a89c14:#008ec4:#523c79:#20a5ba:#d9d9d9:#424242:#fb007a:#5fd7af:#f3e430:#20bbfc:#6855de:#4fb8cc:#f1f1f1"
+    background_color = "#212121"
+    background_image = None
+    cursor_color = "#20bbfc"
+    foreground_color = "#f1f1f1"
+  [[Tomorrow Night Eighties]]
+    palette = "#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff:#000000:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#ffffff"
+    background_color = "#2d2d2d"
+    background_image = None
+    cursor_color = "#cccccc"
+    foreground_color = "#cccccc"
+  [[Seti]]
+    palette = "#323232:#c22832:#8ec43d:#e0c64f:#43a5d5:#8b57b5:#8ec43d:#eeeeee:#323232:#c22832:#8ec43d:#e0c64f:#43a5d5:#8b57b5:#8ec43d:#ffffff"
+    background_color = "#111213"
+    background_image = None
+    cursor_color = "#e3bf21"
+    foreground_color = "#cacecd"
+  [[Broadcast]]
+    palette = "#000000:#da4939:#519f50:#ffd24a:#6d9cbe:#d0d0ff:#6e9cbe:#ffffff:#323232:#ff7b6b:#83d182:#ffff7c:#9fcef0:#ffffff:#a0cef0:#ffffff"
+    background_color = "#2b2b2b"
+    background_image = None
+    cursor_color = "#ffffff"
+    foreground_color = "#e6e1dc"
+  [[Misterioso]]
+    palette = "#000000:#ff4242:#74af68:#ffad29:#338f86:#9414e6:#23d7d7:#e1e1e0:#555555:#ff3242:#74cd68:#ffb929:#23d7d7:#ff37ff:#00ede1:#ffffff"
+    background_color = "#2d3743"
+    background_image = None
+    cursor_color = "#000000"
+    foreground_color = "#e1e1e0"
+  [[Dark Pastel]]
+    palette = "#000000:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#bbbbbb:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    foreground_color = "#ffffff"
+  [[test]]
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    background_image = None
+  [[SeaShells]]
+    palette = "#17384c:#d15123:#027c9b:#fca02f:#1e4950:#68d4f1:#50a3b5:#deb88d:#434b53:#d48678:#628d98:#fdd39f:#1bbcdd:#bbe3ee:#87acb4:#fee4ce"
+    background_color = "#09141b"
+    background_image = None
+    cursor_color = "#fca02f"
+    foreground_color = "#deb88d"
+  [[Hardcore]]
+    palette = "#1b1d1e:#f92672:#a6e22e:#fd971f:#66d9ef:#9e6ffe:#5e7175:#ccccc6:#505354:#ff669d:#beed5f:#e6db74:#66d9ef:#9e6ffe:#a3babf:#f8f8f2"
+    background_color = "#121212"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    foreground_color = "#a0a0a0"
+  [[Thayer Bright]]
+    palette = "#1b1d1e:#f92672:#4df840:#f4fd22:#2757d6:#8c54fe:#38c8b5:#ccccc6:#505354:#ff5995:#b6e354:#feed6c:#3f78ff:#9e6ffe:#23cfd5:#f8f8f2"
+    background_color = "#1b1d1e"
+    background_image = None
+    cursor_color = "#fc971f"
+    foreground_color = "#f8f8f8"
+  [[Japanesque]]
+    palette = "#343935:#cf3f61:#7bb75b:#e9b32a:#4c9ad4:#a57fc4:#389aad:#fafaf6:#595b59:#d18fa6:#767f2c:#78592f:#135979:#604291:#76bbca:#b2b5ae"
+    background_color = "#1e1e1e"
+    background_image = None
+    cursor_color = "#edcf4f"
+    foreground_color = "#f7f6ec"
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+  [[New Layout]]
+    [[[child0]]]
+      position = 0:24
+      type = Window
+      order = 0
+      parent = ""
+      size = 1600, 876
+    [[[child1]]]
+      labels = None, None
+      type = Notebook
+      order = 0
+      parent = child0
+    [[[terminal3]]]
+      profile = default
+      type = Terminal
+      order = 1
+      parent = child1
+    [[[terminal2]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child1
+[plugins]

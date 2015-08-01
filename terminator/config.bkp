@@ -1,0 +1,26 @@
+[global_config]
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  handle_size = 2
+  inactive_color_offset = 0.66
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#000000:#ff58ac:#99ff33:#ff9933:#3399ff:#9933ff:#33ff99:#d9d9d9:#262626:#ff99cc:#ccff99:#ffcc99:#99ccff:#cc99ff:#99ffcc:#ffffff"
+    background_image = None
+    background_darkness = 0.89
+    use_system_font = False
+    foreground_color = "#d9e6f2"
+    show_titlebar = False
+    font = Ubuntu Mono 12
+    background_color = "#0d1926"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
