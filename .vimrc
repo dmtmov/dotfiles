@@ -51,7 +51,7 @@ set foldmethod=indent
 set background=dark
 "
 " " enable full mouse support
-"set mouse=a
+set mouse=a
 " " enable all Python syntax highlighting features
 let python_highlight_all = 1
 set secure
@@ -63,6 +63,6 @@ set colorcolumn=100
 
 " " change cursor shape in different modes
 " " default for visual, line for insert mods
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[5 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
