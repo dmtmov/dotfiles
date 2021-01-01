@@ -25,7 +25,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Netrw file explorer (replaced with NvimTree)
+
 vim.g.netrw_liststyle = 4
 vim.g.netrw_banner_split = 4
 vim.g.netrw_fastbrowse = 2
@@ -33,8 +33,8 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
 
 -- Tabs & indentation
 vim.opt.tabstop = 4
@@ -67,7 +67,7 @@ vim.opt.scrolloff = 10
 
 -- Rullers
 vim.opt.textwidth = 80
-vim.opt.colorcolumn = "+0,+0"
+-- vim.opt.colorcolumn = "+0,+0"
 vim.opt.cursorline = true
 
 -- Folding
@@ -99,7 +99,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
 vim.keymap.set({ 'n', 'v' }, 'q:', '<nop>', opts)
 
 -- Open Filetree
--- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 
 -- Open Terminal in new window
 vim.keymap.set('n', '<leader>T', ':terminal<CR>', opts)
@@ -114,6 +114,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d', opts)
 vim.keymap.set({ 'n', 'v' }, '<leader>c', '"_c', opts)
 
 
+vim.keymap.set('n', 'ss', ':vsplit<CR><C-w>w', opts)
+
 vim.keymap.set('n', '<leader>n', ':bnext<CR>', opts)
 vim.keymap.set('n', '<leader>p', ':bprev<CR>', opts)
 vim.keymap.set('n', '<leader>bd', ':bdelete | bNext<CR>', opts)
@@ -122,19 +124,16 @@ vim.keymap.set('n', '<leader>w', ':w<CR>', opts)
 vim.keymap.set('n', '<leader>s', ':luafile %<CR>', opts)
 
 -------------------------------------------------------------------------------
--- Plugins
 require("lazy").setup({
     spec = {
-        "nvim-lua/plenary.nvim",
+        { "nvim-lua/plenary.nvim" },
 
         -- Treesitter
-        { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+        { "nvim-treesitter/nvim-treesitter",           build = ":TSUpdate" },
 
         -- Telescope
         { "nvim-telescope/telescope.nvim" },
-        {
-            "nvim-telescope/telescope-fzf-native.nvim", build = "make"
-        },
+        { "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
 
         -- LSP
         {
@@ -165,36 +164,36 @@ require("lazy").setup({
         { "nvim-tree/nvim-tree.lua" },
 
         -- Git
-        { "lewis6991/gitsigns.nvim",      config = true },
+        { "lewis6991/gitsigns.nvim",     config = true },
 
         -- Colorschemes
         { "ellisonleao/gruvbox.nvim" },
-        { "rose-pine/neovim",             name = "rose-pine" },
-        { "Shatur/neovim-ayu" },
+        { "rose-pine/neovim",            name = "rose-pine" },
+        -- { "Shatur/neovim-ayu" },
         { "projekt0n/github-nvim-theme" },
         { "rebelot/kanagawa.nvim" },
-        { "sainnhe/everforest" },
-        { "xero/miasma.nvim" },
+        -- { "sainnhe/everforest" },
         { "maxmx03/solarized.nvim" },
-        { "shaunsingh/nord.nvim" },
-        { 'kepano/flexoki-neovim',        name = 'flexoki' },
+        { 'kepano/flexoki-neovim',       name = 'flexoki' },
         { 'RRethy/base16-nvim' },
 
         -- Misc
-        { "echasnovski/mini.statusline",  veresion = '*' },
-        { "echasnovski/mini.indentscope", veresion = '*' },
-        { "echasnovski/mini.tabline",     veresion = '*' },
-        { "echasnovski/mini.cursorword",  veresion = '*' },
-        { "echasnovski/mini.pairs",       veresion = '*' },
-        { "echasnovski/mini.notify",      veresion = '*' },
-        { "echasnovski/mini.icons",       veresion = '*' },
-        { "echasnovski/mini.hues",        veresion = '*' },
-        { "echasnovski/mini.base16",      veresion = '*' },
+        { "echasnovski/mini.statusline" },
+        { "echasnovski/mini.indentscope" },
+        { "echasnovski/mini.tabline" },
+        { "echasnovski/mini.cursorword" },
+        { "echasnovski/mini.pick" },
+        { "echasnovski/mini.pairs" },
+        { "echasnovski/mini.notify" },
+        { "echasnovski/mini.icons" },
+        { "echasnovski/mini.hues" },
+        { "echasnovski/mini.base16" },
 
         "wakatime/vim-wakatime",
 
         "supermaven-inc/supermaven-nvim",
         -- "Exafunction/codeium.nvim",
+        -- "yetone/avante.nvim"
 
         {
             "rcarriga/nvim-dap-ui",
@@ -206,44 +205,7 @@ require("lazy").setup({
             }
         },
 
-
-        -- https://github.com/smoka7/multicursors.nvim
-        {
-            "smoka7/multicursors.nvim",
-            event = "VeryLazy",
-            dependencies = {
-                'nvimtools/hydra.nvim',
-            },
-            opts = {},
-            cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
-            keys = {
-                {
-                    mode = { 'v', 'n' }, '<Leader>m', '<cmd>MCstart<cr>'
-                },
-            },
-        },
-
-        -- AI section:
-        -- {
-        --     "yetone/avante.nvim",
-        --     event = "VeryLazy",
-        --     lazy = false,
-        --     opts = {
-        --         provider = "openai",
-        --     },
-        --     keys = {
-        --         { "<leader>aa", function() require("avante.api").ask() end,    mode = { "n", "v" } },
-        --         { "<leader>ae", function() require("avante.api").edit() end,   mode = "v" },
-        --     },
-        --     dependencies = {
-        --         "stevearc/dressing.nvim",
-        --         "nvim-lua/plenary.nvim",
-        --         "MunifTanjim/nui.nvim",
-        --     },
-        -- }
     },
-    -- colorscheme that will be used when installing plugins.
-    -- automatically check for plugin updates
     checker = { enabled = true },
 })
 
@@ -251,21 +213,40 @@ require("lazy").setup({
 -- Mini
 
 require('mini.statusline').setup()
-require('mini.tabline').setup {}
+require('mini.tabline').setup { show_icons = true }
+require('mini.icons').setup {}
+require('mini.pick').setup {}
 require('mini.cursorword').setup {}
-require('mini.indentscope').setup {}
+-- require('mini.indentscope').setup {}
 require('mini.pairs').setup {}
 
 -------------------------------------------------------------------------------
 -- File explorer
 
 -- disable netrw at the very start
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
---
--- require("nvim-tree").setup({
---     renderer = { icons = { show = { file = false, folder = false } } }
--- })
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
+
+local nt_api = require 'nvim-tree.api'
+
+nt_api.events.subscribe(nt_api.events.Event.TreeOpen, function()
+    local tree_winid = nt_api.tree.winid()
+
+    if tree_winid ~= nil then
+        vim.api.nvim_set_option_value('statusline', '_', { win = tree_winid })
+    end
+end)
+
+
+require("nvim-tree").setup({
+    update_focused_file = {
+        enable = true,
+        update_root = true,
+    },
+    renderer = { icons = { show = { file = false, folder = false } } }
+})
 
 -------------------------------------------------------------------------------
 -- Treesitter
@@ -295,14 +276,31 @@ require('nvim-treesitter.configs').setup {
 
 local lsp_zero = require('lsp-zero')
 
-lsp_zero.on_attach(function(_, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
     -- lsp_zero.buffer_autoformat()
-    vim.keymap.set('n', 'gf', vim.diagnostic.open_float, { buffer = bufnr })
-    vim.keymap.set('n', 'gF', vim.lsp.buf.format, { buffer = bufnr })
-    vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, { buffer = bufnr })
-    vim.keymap.set('n', 'gds', ':vsplit | lua vim.lsp.buf.definition()<CR>', { buffer = bufnr })
+
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', 'gf', vim.diagnostic.open_float, bufopts)
+    vim.keymap.set('n', 'gF', vim.lsp.buf.format, bufopts)
+    vim.keymap.set('n', 'gds', ':vsplit | lua vim.lsp.buf.definition()<CR>', bufopts)
+
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', 'grn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end)
+
+
+
+
 
 require("mason").setup {}
 require("mason-lspconfig").setup {
@@ -335,6 +333,24 @@ require("mason-lspconfig").setup {
                         },
                         staticcheck = true,
                         gofumpt = true,
+                    },
+                },
+            })
+        end,
+        ['pyright'] = function()
+            require('lspconfig').pyright.setup({
+                settings = {
+                    python = {
+                        analysis = {
+                            autoSearchPaths = true,
+                            diagnosticMode = 'openFilesOnly',
+                            useLibraryCodeForTypes = true,
+                        },
+                    },
+                    venv = {
+                        systemEnv = {
+                            PATH = os.getenv('PATH'),
+                        },
                     },
                 },
             })
@@ -388,12 +404,30 @@ cmp.setup({
 -- Telescope
 
 require("telescope").setup {
+    defaults = {
+        file_ignore_patterns = {
+            '.git/',
+            '.venv/',
+            'venv/',
+            'node_modules/',
+            '__pycache__/',
+            '.ruff_cache/',
+            'pytest_cache/',
+        },
+    },
     extensions = {
         fzf = {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
             case_mode = "smart_case",
+        },
+        file_browser = {
+            theme = "ivy",
+            previewer = true,
+            layout_config = {
+                prompt_position = "top"
+            },
         },
     },
     pickers = {
@@ -409,8 +443,11 @@ require("telescope").setup {
             previewer = false,
         },
         find_files = {
+            -- find_command = 'rg',
             theme = "dropdown",
             previewer = false,
+            hidden = true,
+            no_ignore = true,
             layout_config = {
                 prompt_position = "top"
             },
@@ -426,7 +463,7 @@ require("telescope").setup {
 }
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('dap')
-
+require('telescope').load_extension('file_browser')
 
 local builtin = require('telescope.builtin')
 -- vim.keymap.set('n', '<leader>', ':Telescope<CR>', opts)
@@ -448,7 +485,7 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 --         args = { "main:app", "--reload" },
 --         jinja = true,
 --         pythonPath = function()
---             return '/Users/d/projects/sqlx-admin/.venv/bin/debugpy'
+--             return 'path/to/debugp'
 --         end,
 --     },
 -- }
@@ -466,7 +503,7 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 --         require = 'launch',
 --         name = "Launch file",
 --         program = "${file}",
---         pythonPath = function() return '/Users/d/projects/sqlx-admin/.venv/bin/debugpy' end,
+--         pythonPath = function() return 'path/to/debugpy' end,
 --     },
 -- }
 
@@ -480,12 +517,12 @@ require("dapui").setup({
         }, {
             id = "breakpoints",
             size = 0.5
-        -- }, {
-        --     id = "stacks",
-        --     size = 0.25
-        -- }, {
-        --     id = "watches",
-        --     size = 0.25
+            -- }, {
+            --     id = "stacks",
+            --     size = 0.25
+            -- }, {
+            --     id = "watches",
+            --     size = 0.25
         } },
         position = "left",
         size = 40
@@ -530,7 +567,6 @@ require('supermaven-nvim').setup({
 
 -------------------------------------------------------------------------------
 -- Colorscheme
-
 local function isDarkMode()
     local file = io.popen('defaults read -g AppleInterfaceStyle', 'r')
     local output = file:read('*all')
@@ -562,18 +598,6 @@ require("rose-pine").setup({
     },
 })
 
--- Color scheme settings - Everforest
-vim.g.everforest_background = 'medium'
-vim.g.everforest_better_performance = 1
-
--- Color scheme settings - Nord
-vim.g.nord_contrast = true
-vim.g.nord_borders = true
-vim.g.nord_disable_background = false
-vim.g.nord_italic = true
-vim.g.nord_bold = true
-require('nord').set()
-
 -- Color scheme settings - Kanagawa
 vim.g.kanagawa_italic = true
 vim.g.kanagawa_underline = true
@@ -589,33 +613,29 @@ require('kanagawa').setup({
 })
 
 -- Color scheme settings - Gruvbox
-require('gruvbox').setup { contrast = "hard" }
-require('solarized').setup({ theme = "default", transparent = { enabled = true } })
-require('ayu').setup({
-    mirage = false,
-    terminal = true,
-})
+-- require('gruvbox').setup { contrast = "hard" }
+-- require('solarized').setup({ theme = "default", transparent = { enabled = true } })
 
 -- Color scheme settings - Github
-require('github-theme').setup({
-    options = {
-        dim_inactive = true
-    },
-    -- groups = {
-    --     github_light = {
-    --         Normal = { bg = '#FFFCEB' },
-    --         -- ColorColumn = { bg = '#000000' },
-    --         -- CursorLine = { bg = '#000000', fg = '#ffffff' },
-    --         -- StatusLine = { bg = '#FFFCEB', fg = '#000000' },
-    --     },
-    -- }
-})
+-- require('github-theme').setup({
+--     options = {
+--         dim_inactive = true
+--     },
+--     -- groups = {
+--     --     github_light = {
+--     --         Normal = { bg = '#FFFCEB' },
+--     --         -- ColorColumn = { bg = '#000000' },
+--     --         -- CursorLine = { bg = '#000000', fg = '#ffffff' },
+--     --         -- StatusLine = { bg = '#FFFCEB', fg = '#000000' },
+--     --     },
+--     -- }
+-- })
 
 
 toggleAppearance(
-    -- Dark:
-    -- 'ayu',
-    -- 'gruvbox',
+-- Dark:
+-- 'ayu',
+-- 'gruvbox',
     'kanagawa',
     -- 'solarized',
     -- 'flexoki-dark',
@@ -624,6 +644,7 @@ toggleAppearance(
     -- 'giuthub-light',
     -- 'flexoki-light'
     'rose-pine-dawn'
+
 )
 
 -- Enable transparency

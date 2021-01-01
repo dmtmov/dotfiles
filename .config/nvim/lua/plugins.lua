@@ -34,8 +34,8 @@ return require('packer').startup({
         -- use 'dcampos/nvim-snippy'
         -- use 'dcampos/cmp-snippy'
 
-        -- use 'L3MON4D3/LuaSnip'
-        -- use 'saadparwaiz1/cmp_luasnip'
+        use 'L3MON4D3/LuaSnip'
+        use 'saadparwaiz1/cmp_luasnip'
 
         -- use { 'glepnir/lspsaga.nvim', branch = 'main' }
 
@@ -44,9 +44,16 @@ return require('packer').startup({
         -- use 'MunifTanjim/nui.nvim'
         use "windwp/nvim-autopairs"
 
+        -- use 'antonk52/lake.nvim'
+        use 'EdenEast/nightfox.nvim'
+        use 'frenzyexists/aquarium-vim'
+        use 'catppuccin/nvim'
+        use 'rebelot/kanagawa.nvim'
+        use 'kyazdani42/blue-moon'
+        use 'ellisonleao/gruvbox.nvim'
         use 'Shatur/neovim-ayu'
         use 'rose-pine/neovim'
-        use 'norcalli/nvim-base16.lua'
+        use 'RRethy/nvim-base16'
         use 'yamatsum/nvim-cursorline'
         use 'terrortylor/nvim-comment'
         -- use 'lukas-reineke/indent-blankline.nvim'
@@ -58,6 +65,7 @@ return require('packer').startup({
         use 'nvim-tree/nvim-tree.lua'
 
         use { 'akinsho/bufferline.nvim' }
+
     end,
     config = {
         display = {

@@ -64,6 +64,7 @@ M = {
         mods = 'CMD',
         action = act.CloseCurrentPane { confirm = true },
     },
+    { key = '`', mods = 'CTRL', action = wezterm.action.ShowTabNavigator },
     { key = "L", mods = "CMD|SHIFT", action = "ShowLauncher" },
     { key = "T", mods = "CMD|SHIFT", action = "ShowTabNavigator" },
     { key = "f", mods = "CMD|CTRL",  action = "ToggleFullScreen" },

@@ -72265,7 +72265,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>JetBrainsMonoNFM-Regular 12</string>
+			<string>JetBrainsMono-Regular 11</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Open Password Manager Automatically</key>
@@ -76631,7 +76631,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Zed-Mono 15</string>
+			<string>JetBrainsMonoNerdFontComplete-Regular 15</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Open Password Manager Automatically</key>
@@ -76698,7 +76698,7 @@
 			<key>Show Status Bar</key>
 			<false/>
 			<key>Show Timestamps</key>
-			<integer>2</integer>
+			<integer>0</integer>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Status Bar Layout</key>
@@ -76815,6 +76815,8 @@
 			<integer>2</integer>
 			<key>Transparency</key>
 			<real>0.060064827127659572</real>
+			<key>Unicode Normalization</key>
+			<integer>3</integer>
 			<key>Unicode Version</key>
 			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
