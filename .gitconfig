@@ -1,7 +1,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = Dmitry Movchan
-	email = dmitry.movchan@icanbwell.com
+	email = mail@dmtmov.me
 [gitreview]
 	remote = origin
 [filter "lfs"]
