@@ -83,10 +83,9 @@ return require('packer').startup({function()
   ----------------------------------------------------------------------------
   use {
     'Shatur/neovim-ayu',
-
-    config = require('ayu').setup {
-      mirage = true
-    }
+    config = function()
+      require('ayu').setup{mirage = true}
+    end
   }
   
 
