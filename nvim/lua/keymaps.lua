@@ -3,7 +3,7 @@
 local key_map = vim.api.nvim_set_keymap
 
 key_map('n', '<leader>l', ':bnext<CR>', {noremap = true, silent = true })
-key_map('n', '<leader>bd', ':bdelete<CR>', {noremap = true, silent = true })
+key_map('n', '<leader>bd', ':bdelete | bNext<CR>', {noremap = true, silent = true })
 
 key_map('n', 'vs', ':vs<CR>', { noremap = true, silent = true })
 key_map('n', 'sp', ':sp<CR>', { noremap = true, silent = true })

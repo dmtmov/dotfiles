@@ -25,7 +25,6 @@ vim.o.showmatch = true
 vim.o.wildmenu = true
 vim.o.wrap = true
 vim.o.textwidth = 79
-vim.o.listchars = 'tab:▸ ,eol:¬'
 vim.o.autoindent = true
 vim.o.secure = true
 
