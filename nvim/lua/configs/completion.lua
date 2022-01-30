@@ -27,6 +27,9 @@ local my_on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+    buf_set_keymap('i', '<c-v>', '<c-x><c-v>',opts)
+    buf_set_keymap('i', '<c-l>', '<c-x><c-l>',opts)
 end
 
 -- Setup nvim-cmp.
@@ -52,10 +55,15 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'snippy' },
+        { name = 'treesitter' },
         { name = 'cmp_tabnine' },
+        { name = 'path' },
     }, {
         { name = 'buffer' },
-    })
+    }),
+    documentation = {
+        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
