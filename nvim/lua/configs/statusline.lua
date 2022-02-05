@@ -14,8 +14,8 @@ require('lualine').setup {
                     {'diagnostics', sources={'nvim_diagnostic',}}},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_y = {'location'},
+        lualine_z = {'progress'}
     },
     tabline = {
         lualine_a = {'buffers'},
