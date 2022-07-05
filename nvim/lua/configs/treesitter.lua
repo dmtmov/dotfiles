@@ -1,7 +1,7 @@
 --
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = 'maintained',
+    ensure_installed = {'python', 'swift', 'javascript', 'typescript', 'lua'},
     sync_install = false,
     ignore_install = {},
     highlight = {

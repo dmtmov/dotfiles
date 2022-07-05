@@ -1,8 +1,10 @@
---
+-- https://github.com/nvim-lualine/lualine.nvim
+
 require('lualine').setup {
     options = {
         icons_enabled = false,
-        theme = 'ayu_dark',
+        --theme = 'ayu_dark',
+        theme = 'gruvbox_dark',
         component_separators = { left = '|', right = '|'},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {},
