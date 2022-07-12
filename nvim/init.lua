@@ -104,40 +104,6 @@ vim.keymap.set('n', '<', '<<', opts)
 vim.keymap.set('n', '>', '>>', opts)
 
 
-function save_buffer_and_notify()
-    vim.cmd ':w'
-    require"notify".notify(
-        ' File saved',
-        'info',
-        {
-            title = 'Buffer',
-            stages = 'slide',
-            icon = '::',
-            border = "rounded",
-            timeout = 10,
-        }
-    )
-end
-vim.keymap.set('n', '<leader>w', ':lua save_buffer_and_notify()<CR>', opts)
-
-function source_lua_file_and_notify()
-    vim.cmd 'luafile %'
-    require"notify".notify(
-        ' File sourced',
-        'info',
-        {
-            title = 'Lua',
-            stages = 'slide',
-            icon = '::',
-            border = "rounded",
-            timeout = 10,
-        }
-    )
-end
-
-vim.keymap.set('n', '<leader>l', ':lua source_lua_file_and_notify()<CR>', {noremap=true, silent=false})
-
-
 ---------------------------------------
 --
 --           TELESCOPE
@@ -228,16 +194,31 @@ require('nvim-cursorline').setup {
 --          NOTIFICATIONS
 --
 ---------------------------------------
---vim.notify = require("notify").setup(
---    {
---        minimum_width = 10,
---        render = "minimal",
---        stages = "static",
---        message = {
---            height = 20,
---            width = 10,
---        },
---        timeout = 3000,
---    }
---)
+vim.notify = require('notify')
+-- overwrited global notify method
+vim.notify.setup(
+    {
+        stages = 'fade',
+        render = 'minimal',
+        timeout = 1,
+    }
+)
+
+function invoke_and_notify(cmd, message)
+    vim.cmd(cmd)
+    vim.notify(message, 'info')
+end
+
+vim.keymap.set(
+    'n',
+    '<leader>w',
+    ':lua invoke_and_notify(":w", " File saved")<CR>',
+    opts
+)
+vim.keymap.set(
+    'n',
+    '<leader>l',
+    ':lua invoke_and_notify("luafile %", " File sourced")<CR>',
+    {noremap=true, silent=false}
+)
 

@@ -36,6 +36,7 @@ return require('packer').startup({
         use 'bluz71/vim-nightfly-guicolors'
         use 'elvessousa/sobrio'
         use 'yamatsum/nvim-cursorline'
+        use 'terrortylor/nvim-comment'
         --use 'lukas-reineke/indent-blankline.nvim'
 
         use 'wakatime/vim-wakatime'
