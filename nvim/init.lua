@@ -31,7 +31,7 @@ vim.opt.smartcase = true
 vim.opt.swapfile = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 10
 vim.opt.numberwidth = 4
 vim.opt.showmode = true
 vim.opt.showtabline = 2
@@ -63,8 +63,6 @@ require'configs.treesitter'
 
 require('ayu').setup({ mirage=true })
 require('ayu').colorscheme()
-
-
 -- Enable indent plugin
 --[[
 require("indent_blankline").setup({
