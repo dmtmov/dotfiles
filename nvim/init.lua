@@ -61,8 +61,9 @@ require'configs.treesitter'
 
 --vim.cmd 'colorscheme base16-gruvbox-dark-hard'
 
-require('ayu').setup({ mirage=true })
-require('ayu').colorscheme()
+--require('ayu').setup({ mirage=true })
+--require('ayu').colorscheme()
+vim.cmd 'colorscheme sobrio'
 -- Enable indent plugin
 --[[
 require("indent_blankline").setup({
@@ -222,3 +223,9 @@ vim.keymap.set(
     {noremap=true, silent=false}
 )
 
+---------------------------------------
+--
+--          COMMENTS
+--
+---------------------------------------
+require('nvim_comment').setup()
