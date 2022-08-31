@@ -1,26 +1,45 @@
-export ZSH="/Users/d/.oh-my-zsh"
 
-ZSH_THEME="simple"
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share:$PATH"
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
-plugins=(git sublime)
+export ZSH="$HOME/.oh-my-zsh"
+export NVM_DIR="$HOME/.nvm"
+
+#ZSH_THEME="afowler"
+#ZSH_THEME="awesomepanda"
+#ZSH_THEME="daveverwer"
+#ZSH_THEME="edvardm"
+#ZSH_THEME="jbergantine"
+#ZSH_THEME="mgutz" #👍🏼
+#ZSH_THEME="sorin"
+## stopped discover at https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gozilla
+
+PROMPT='%{$fg[magenta]%}%0~ %{$fg_bold[magenta]%}%(!.#.::) %{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY=" ✗"
+ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
+
+RPROMPT='%{$fg_bold[white]%} $(git_current_branch) %{$reset_color%}'
+
+ZSH_THEME_GIT_PROMPT_ADDED=" ✚"
+ZSH_THEME_GIT_PROMPT_MODIFIED=" ✹"
+ZSH_THEME_GIT_PROMPT_DELETED=" ✖"
+ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
+ZSH_THEME_GIT_PROMPT_UNMERGED=" ═"
+ZSH_THEME_GIT_PROMPT_UNTRACKED=" ✭"
+
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+plugins=(git sublime poetry docker docker-compose aws brew kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
-alias k="/usr/local/bin/kubectl"
-alias updatedb='sudo /usr/libexec/locate.updatedb'
+export LANG=en_US.UTF-8
+export EDITOR=nvim
 
-export PATH=/usr/local/share/python:$PATH
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Configuration for virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/Users/d/bwell/marketplace-auth-service/venv/bin:$PATH"
-
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+source ~/.completions.zsh
