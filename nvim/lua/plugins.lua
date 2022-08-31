@@ -18,6 +18,7 @@ return require('packer').startup({
 
         -- Git integration
         use 'lewis6991/gitsigns.nvim'
+        use 'sindrets/diffview.nvim'
 
         -- Auto-completion
         use 'hrsh7th/nvim-cmp'
@@ -37,7 +38,8 @@ return require('packer').startup({
         use 'elvessousa/sobrio'
         use 'yamatsum/nvim-cursorline'
         use 'terrortylor/nvim-comment'
-        --use 'lukas-reineke/indent-blankline.nvim'
+        use 'lukas-reineke/indent-blankline.nvim'
+        use 'xiyaowong/nvim-transparent'
 
         use 'wakatime/vim-wakatime'
         -- Notifications

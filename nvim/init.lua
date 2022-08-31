@@ -10,7 +10,7 @@ vim.g.cursorword_highlight = true
 --vim.opt.timeoutlen = 1000
 vim.opt.syntax = "on"
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- Identation
 vim.opt.tabstop = 4
@@ -36,7 +36,7 @@ vim.opt.numberwidth = 4
 vim.opt.showmode = true
 vim.opt.showtabline = 2
 vim.opt.cursorline = true
-vim.opt.mouse = ''
+vim.opt.mouse = 'a'
 vim.opt.colorcolumn = "-40,-20,-0"
 vim.opt.ruler = true
 vim.opt.showcmd = true
@@ -53,28 +53,25 @@ vim.opt.foldlevelstart = 99
 vim.api.nvim_command('filetype plugin indent on')
 
 
-require'plugins'
-require'configs.lsp'
-require'configs.completion'
-require'configs.git'
-require'configs.treesitter'
+-- Netrw file explorer settings
+vim.cmd 'let g:netrw_liststyle =3'
+vim.cmd 'let g:netrw_banner =0'
+vim.cmd 'let g:netrw_browse_split =3'
 
---vim.cmd 'colorscheme base16-gruvbox-dark-hard'
 
---require('ayu').setup({ mirage=true })
---require('ayu').colorscheme()
+require 'plugins'
+require 'configs.lsp'
+require 'configs.completion'
+require 'configs.git'
+require 'configs.treesitter'
+
+-- vim.cmd 'colorscheme base16-gruvbox-dark-hard'
 vim.cmd 'colorscheme sobrio'
--- Enable indent plugin
---[[
-require("indent_blankline").setup({
-    show_current_context = true,
-    show_current_context_start = false
-})
---]]
+-- vim.cmd 'colorscheme ayu-dark'
 
---vim.cmd 'highlight Normal guibg=none'
---vim.cmd 'highlight Cursorlive guifg=bold guibg=black'
-
+-- vim.cmd 'highlight Normal guibg=none'
+-- vim.cmd 'highlight Cursorlive guifg=bold guibg=black'
+vim.cmd 'let g:transparent_enabled = v:true'
 
 ---------------------------------------
 --
@@ -103,7 +100,7 @@ vim.keymap.set('i', 'jk', '<ESC>', opts)
 
 vim.keymap.set('n', '<', '<<', opts)
 vim.keymap.set('n', '>', '>>', opts)
-
+vim.keymap.set('n', '<leader>c', ':CommentToggle<CR>', opts)
 
 ---------------------------------------
 --
@@ -118,7 +115,7 @@ require('telescope').setup {
             "./colors/",
             "./.venv",
         },
-        path_display={"smart"},
+        path_display = { "smart" },
         layout_strategy = "horizontal",
         layout_config = {
             width = 0.9,
@@ -134,60 +131,14 @@ require('telescope').setup {
     }
 }
 
-
----------------------------------------
---
---           STATUSLINE
---
----------------------------------------
---[[
-require('lualine').setup {
-    options = {
-        icons_enabled = false,
-        theme = 'ayu_mirage',
-        --theme = 'gruvbox_dark',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
-        disabled_filetypes = {},
-        always_divide_middle = true,
-    },
-    sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff',
-                    {'diagnostics', sources={'nvim_diagnostic',}}},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {'location'},
-        lualine_z = {'progress'}
-    },
-    tabline = {
-        lualine_a = {'buffers'},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {'tabs'}
-    },
-    extensions = {}
-}
---]]
-
 ---------------------------------------
 --
 --          CURSORLINE
 --
 ---------------------------------------
 require('nvim-cursorline').setup {
-  cursorline = {
-    enable = true,
-    timeout = 1000,
-    number = false,
-  },
-  cursorword = {
-    enable = true,
-    min_length = 3,
-    hl = { underline = true },
-  }
+    cursorline = { enable = true, timeout = 1000, number = false },
+    cursorword = { enable = true, min_length = 3, hl = { underline = true } }
 }
 
 ---------------------------------------
@@ -196,14 +147,13 @@ require('nvim-cursorline').setup {
 --
 ---------------------------------------
 vim.notify = require('notify')
--- overwrited global notify method
-vim.notify.setup(
-    {
-        stages = 'fade',
-        render = 'minimal',
-        timeout = 1,
-    }
-)
+vim.notify.setup {
+    stages = 'fade_in_slide_out',
+    render = 'minimal',
+    minimum_width = 20,
+    --timeout = 1,
+    background_colour = 'Normal',
+}
 
 function invoke_and_notify(cmd, message)
     vim.cmd(cmd)
@@ -220,7 +170,7 @@ vim.keymap.set(
     'n',
     '<leader>l',
     ':lua invoke_and_notify("luafile %", " File sourced")<CR>',
-    {noremap=true, silent=false}
+    opts
 )
 
 ---------------------------------------
@@ -229,3 +179,25 @@ vim.keymap.set(
 --
 ---------------------------------------
 require('nvim_comment').setup()
+
+---------------------------------------
+--
+--          DIFF
+--
+---------------------------------------
+require('diffview').setup()
+
+---------------------------------------
+--
+--          INDENTATION
+--
+---------------------------------------
+require('indent_blankline').setup {}
+--[[
+    show_current_context = true,
+    show_current_context_start = false,
+    show_end_of_line = true,
+    space_char_blankline = " ",
+}
+--]]
+

@@ -18,7 +18,7 @@ local my_on_attach = function(client, bufnr)
     --buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     --buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     buf_set_keymap('n', 'gtdf', '<cmd>belowright split | lua vim.lsp.buf.type_definition()<CR>', opts)
-    --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', 'gca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gref', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gof', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -40,11 +40,12 @@ end
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable completion in LSP
 local lspconfig = require('lspconfig')
-local servers = { 'pyright', 'sumneko_lua', 'tsserver', 'sourcekit'}
+local servers = {'pyright', 'sumneko_lua', 'tsserver', 'sourcekit', 'html', 'jsonls', 'cssls'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = my_on_attach,
@@ -52,6 +53,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+
+vim.lsp.handlers['textDocument/diagnostic'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {border = 'rounded'}
+)
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover,
