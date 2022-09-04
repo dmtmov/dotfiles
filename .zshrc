@@ -36,10 +36,17 @@ plugins=(git sublime poetry docker docker-compose aws brew kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
-export LANG=en_US.UTF-8
-export EDITOR=nvim
-
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source ~/.completions.zsh
+export LANG=en_US.UTF-8
+export EDITOR=nvim
+export PAGER="bat --paging=always --pager=\"less -R\""
+
+alias src="source ~/.zshrc; echo 'sourced.'"
+alias l="exa --long --header --all --icons"
+alias tf="terraform"
+alias k="kubectl"
+alias n="nvim"
+alias fzf="fzf --preview=\"bat --color=always {}\""
+alias updatedb="sudo /usr/libexec/locate.updatedb; echo 'done.'"
