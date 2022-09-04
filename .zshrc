@@ -5,6 +5,10 @@ export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 export NVM_DIR="$HOME/.nvm"
 
+export LANG=en_US.UTF-8
+export EDITOR=nvim
+export PAGER="bat --paging=always --pager=\"less -R\""
+
 #ZSH_THEME="afowler"
 #ZSH_THEME="awesomepanda"
 #ZSH_THEME="daveverwer"
@@ -36,12 +40,14 @@ plugins=(git sublime poetry docker docker-compose aws brew kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
+# Enable zsh-autosuggestions plugin
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Enable zsh-navigation-tools
+source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+
+# Enable NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export LANG=en_US.UTF-8
-export EDITOR=nvim
-export PAGER="bat --paging=always --pager=\"less -R\""
 
 alias src="source ~/.zshrc; echo 'sourced.'"
 alias l="exa --long --header --all --icons"
