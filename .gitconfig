@@ -1,11 +1,9 @@
 [user]
-# Please adapt and uncomment the following lines:
-	name = Dmitry Movchan
+	name = Dmytro Movchan
 	email = mail@dmtmov.me
-[gitreview]
-	remote = origin
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+[color]
+	ui = true
+[fetch]
+	prune = true
+[status]
+	short = true
