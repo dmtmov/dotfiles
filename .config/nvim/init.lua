@@ -62,16 +62,14 @@ vim.cmd 'let g:netrw_browse_split =3'
 require 'plugins'
 require 'configs.lsp'
 require 'configs.completion'
-require 'configs.git'
-require 'configs.treesitter'
 
 -- vim.cmd 'colorscheme base16-gruvbox-dark-hard'
-vim.cmd 'colorscheme sobrio'
--- vim.cmd 'colorscheme ayu-dark'
+-- vim.cmd 'colorscheme sobrio'
+vim.cmd 'colorscheme ayu-mirage'
 
 -- vim.cmd 'highlight Normal guibg=none'
 -- vim.cmd 'highlight Cursorlive guifg=bold guibg=black'
-vim.cmd 'let g:transparent_enabled = v:true'
+vim.cmd 'let g:transparent_enabled = v:false'
 
 ---------------------------------------
 --
@@ -200,4 +198,45 @@ require('indent_blankline').setup {}
     space_char_blankline = " ",
 }
 --]]
+
+---------------------------------------
+--
+--          Git signs
+--
+---------------------------------------
+require('gitsigns').setup()
+
+
+---------------------------------------
+--
+--          Treesitter
+--
+---------------------------------------
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = {
+        'python',
+        'swift',
+        'javascript',
+        'typescript',
+        'lua',
+        'html',
+        'css',
+        'json',
+        'yaml',
+        'sql',
+
+    },
+    sync_install = false,
+    ignore_install = {},
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = true,
+    },
+    incremental_selection = {
+        enable = true,
+    },
+    indent = { enable = true },
+    matchup = { enable = true },
+    autopairs = { enable = true }
+}
 

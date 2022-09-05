@@ -6,4 +6,4 @@
 [fetch]
 	prune = true
 [status]
-	short = true
+    #short = true

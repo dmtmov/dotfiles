@@ -34,7 +34,6 @@ return require('packer').startup({
         -- GUI and Styles
         use 'Shatur/neovim-ayu'
         use 'norcalli/nvim-base16.lua'
-        use 'bluz71/vim-nightfly-guicolors'
         use 'elvessousa/sobrio'
         use 'yamatsum/nvim-cursorline'
         use 'terrortylor/nvim-comment'
