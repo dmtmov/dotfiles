@@ -18,4 +18,5 @@ npm install -g typescript typescript-language-server
 npm install -g vscode-css-languageserver-bin
 npm install -g vscode-html-languageserver-bin
 npm install -g vscode-json-languageserver
+npm install -g vscode-langservers-extracted
 ```
