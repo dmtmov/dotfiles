@@ -14,18 +14,18 @@ export PAGER="bat --paging=always --pager=\"less -R\""
 #ZSH_THEME="daveverwer"
 #ZSH_THEME="edvardm"
 #ZSH_THEME="jbergantine"
-#ZSH_THEME="mgutz" #👍🏼
+ZSH_THEME="mgutz" #👍🏼
 #ZSH_THEME="sorin"
 ## stopped discover at https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#gozilla
 
-PROMPT='%{$fg[magenta]%}%0~ %{$fg_bold[magenta]%}%(!.#.::) %{$reset_color%}'
+#PROMPT='%{$fg[magenta]%}%0~ %{$fg_bold[magenta]%}%(!.#.::) %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=" ✗"
 ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
 
-RPROMPT='%{$fg_bold[white]%} $(git_current_branch) %{$reset_color%}'
+#RPROMPT='%{$fg_bold[white]%} $(git_current_branch) %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_ADDED=" ✚"
 ZSH_THEME_GIT_PROMPT_MODIFIED=" ✹"
@@ -40,17 +40,11 @@ plugins=(git sublime poetry docker docker-compose aws brew kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
-# Enable zsh-autosuggestions plugin
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# Enable zsh-navigation-tools
-source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
-
 # Enable NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias src="source ~/.zshrc; echo 'sourced.'"
-alias l="exa --long --header --all --icons"
+alias l="exa --long --header --all"
 alias tf="terraform"
 alias k="kubectl"
 alias n="nvim"
