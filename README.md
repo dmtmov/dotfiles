@@ -5,7 +5,7 @@ configs and other dotfiles
 ```shell
 brew install wget exa bat fd ripgrep jq tree mtr httpie
 brew install pyright pipenv poetry pyenv
-brew install lazygit lazydocker k9s neovim
+brew install lazygit lazydocker k9s neovim ranger
 brew install lua-language-server
 ```
 
