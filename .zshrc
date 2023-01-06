@@ -40,6 +40,12 @@ plugins=(git sublime poetry docker docker-compose aws brew kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Enable NVM
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -50,3 +56,17 @@ alias k="kubectl"
 alias n="nvim"
 alias fzf="fzf --preview=\"bat --color=always {}\""
 alias updatedb="sudo /usr/libexec/locate.updatedb; echo 'done.'"
+
+
+function cd() {
+  if [[ -d ./venv ]] ; then
+    deactivate
+  fi
+
+  builtin cd $1
+
+  if [[ -d ./venv ]] ; then
+    . ./venv/bin/activate
+  fi
+}
+
