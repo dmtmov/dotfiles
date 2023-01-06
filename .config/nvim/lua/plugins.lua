@@ -30,14 +30,19 @@ return require('packer').startup({
         use { 'tzachar/cmp-tabnine', run = './install.sh' }
         use 'dcampos/nvim-snippy'
         use 'dcampos/cmp-snippy'
+        use { 'glepnir/lspsaga.nvim', branch = 'main' }
 
         -- GUI and Styles
         use 'Shatur/neovim-ayu'
+        use 'ellisonleao/gruvbox.nvim'
+        use 'EdenEast/nightfox.nvim'
+        use 'rose-pine/neovim'
+        use { 'catppuccin/nvim', as = 'catppuccin' }
         use 'norcalli/nvim-base16.lua'
         use 'elvessousa/sobrio'
         use 'yamatsum/nvim-cursorline'
         use 'terrortylor/nvim-comment'
-        use 'lukas-reineke/indent-blankline.nvim'
+        -- use 'lukas-reineke/indent-blankline.nvim'
         use 'xiyaowong/nvim-transparent'
 
         use 'wakatime/vim-wakatime'
@@ -51,4 +56,3 @@ return require('packer').startup({
         }
     }
 })
-
