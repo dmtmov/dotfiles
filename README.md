@@ -20,3 +20,4 @@ npm install -g vscode-html-languageserver-bin
 npm install -g vscode-json-languageserver
 npm install -g vscode-langservers-extracted
 ```
+https://github.com/zed-industries/zed-fonts
