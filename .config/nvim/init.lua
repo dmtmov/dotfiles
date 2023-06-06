@@ -7,7 +7,8 @@ vim.g.maplocalleader = " "
 
 -- Highlight same patterns in file on word under cursor
 vim.g.cursorword_highlight = true
---vim.opt.timeoutlen = 1000
+vim.opt.timeout = true
+vim.opt.timeoutlen = 500
 vim.opt.syntax = "on"
 vim.opt.number = true
 vim.opt.relativenumber = false
@@ -54,19 +55,34 @@ vim.opt.foldlevelstart = 99
 -- vim.o.ls = 1
 vim.o.ch = 0
 
+-- Disable native Explorer
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
+
+-- Disable Arrows in Normal Mode
+vim.cmd 'nnoremap <Up> <Nop>'
+vim.cmd 'nnoremap <Left> <Nop>'
+vim.cmd 'nnoremap <Right> <Nop>'
+vim.cmd 'nnoremap <Down> <Nop>'
+
+
 vim.api.nvim_command('filetype plugin indent on')
 
 
 -- Netrw file explorer settings
-vim.cmd 'let g:netrw_liststyle =4'
-vim.cmd 'let g:netrw_banner =0'
-vim.cmd 'let g:netrw_browse_split =4'
--- vim.cmd 'let g:netrw_fastbrowse = 2'
+vim.g.netrw_liststyle = 4
+vim.g.netrw_banner = 0
+vim.g.netrw_banner_split = 4
+vim.g.netrw_fastbrowse = 2
+
+
 
 
 require 'plugins'
-require 'configs.lsp'
-require 'configs.completion'
+require 'cmp_config'
+require 'lsp_config'
 
 -- vim.cmd 'colorscheme sobrio'
 -- vim.cmd 'colorscheme ayu-mirage'
@@ -80,6 +96,9 @@ vim.cmd 'colorscheme rose-pine'
 -- vim.cmd 'highlight Cursorlive guifg=bold guibg=black'
 
 --------------------------------------------------------------------------------
+-- Disable CMD history
+vim.keymap.set('n', 'q:', '<nop>', opts)
+
 -- Filetree
 vim.keymap.set('n', '<leader>e', ':Lexplore 30<CR><CR>', opts)
 
@@ -112,12 +131,12 @@ require('telescope').setup {
             "./colors/",
             "./.venv",
         },
-        path_display = { "smart" },
-        layout_strategy = "horizontal",
-        layout_config = {
-            width = 0.9,
-            preview_width = 0.7,
-        },
+        -- path_display = { "smart" },
+        -- layout_strategy = "horizontal",
+        -- layout_config = {
+        --     width = 0.9,
+        --     preview_width = 0.7,
+        -- },
     },
     pickers = {
         find_files = {
@@ -131,7 +150,7 @@ require('telescope').setup {
 
 --------------------------------------------------------------------------------
 require('nvim-cursorline').setup {
-    -- cursorline = { enable = true, timeout = 1000, number = false },
+    cursorline = { enable = false, timeout = 1000, number = false },
     cursorword = { enable = true, min_length = 3, hl = { underline = true } }
 }
 
@@ -146,7 +165,7 @@ vim.notify.setup {
     background_colour = 'Normal',
 }
 
-function invoke_and_notify(cmd, message)
+invoke_and_notify = function(cmd, message)
     vim.cmd(cmd)
     vim.notify(message, 'info')
 end
@@ -169,8 +188,8 @@ require('nvim_comment').setup()
 
 
 --------------------------------------------------------------------------------
-require('diffview').setup()
-
+-- require('diffview').setup()
+require("nvim-autopairs").setup {}
 
 --------------------------------------------------------------------------------
 -- vim.opt.list = true
@@ -203,8 +222,9 @@ require 'nvim-treesitter.configs'.setup {
         'css',
         'json',
         'yaml',
+        'toml',
         'sql',
-
+        'vim',
     },
     sync_install = false,
     ignore_install = {},
@@ -212,10 +232,45 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting = true,
     },
-    incremental_selection = {
-        enable = true,
-    },
+    incremental_selection = { enable = true },
     indent = { enable = true },
     matchup = { enable = true },
     autopairs = { enable = true }
 }
+
+
+-- require('smartcolumn').setup({
+--     colorcolumn = "80",
+-- })
+
+require "nvim-tree".setup()
+require "nnn".setup()
+require "neo-tree".setup()
+
+
+local null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        -- null_ls.builtins.completion.spell,
+        -- null_ls.builtins.formatting.prettier,
+        -- null_ls.builtins.formatting.black,
+        -- null_ls.builtins.formatting.isort,
+        -- null_ls.builtins.diagnostics.pylint,
+    },
+})
+
+--------------------------------------------------------------------------------
+require("bufferline").setup {
+    options = {
+        offsets = {
+            {
+                text = "FileTree",
+                text_align = "center",
+                filetype = "NvimTree",
+                separator = false,
+            }
+        },
+        color_icons = false,
+    }
+}
+

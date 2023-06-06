@@ -46,20 +46,16 @@ cmp.setup({
             end, {'i', 's'}),
     },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'snippy' },
+        -- { name = 'nvim_lsp' },
+        -- { name = 'snippy' },
         { name = 'treesitter' },
-        { name = 'cmp_tabnine' },
-        { name = 'path' },
-        { name = 'buffer' },
+        -- { name = 'cmp_tabnine' },
+        -- { name = 'path' },
+        -- { name = 'buffer' },
     }),
-
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
-        --documentation = {
-        --    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        --},
     },
     formatting = {
         fields = {'menu', 'abbr', 'kind'},
@@ -79,18 +75,15 @@ cmp.setup({
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer' }
-    }
+    sources = {{ name = 'buffer' }}
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
+    sources = cmp.config.sources(
+        {{ name = 'path' }},
+        {{ name = 'cmdline' }}
+    )
 })
 
 cmp.setup {
