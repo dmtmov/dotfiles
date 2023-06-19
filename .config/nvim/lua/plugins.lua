@@ -10,8 +10,8 @@ return require('packer').startup({
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
         -- LSP
-        use 'williamboman/mason.nvim'
-        use 'williamboman/mason-lspconfig.nvim'
+        --use 'williamboman/mason.nvim'
+        --use 'williamboman/mason-lspconfig.nvim'
         use 'neovim/nvim-lspconfig'
         use 'jose-elias-alvarez/null-ls.nvim'
 
@@ -20,7 +20,7 @@ return require('packer').startup({
 
         -- Git integration
         use 'lewis6991/gitsigns.nvim'
-        -- use 'sindrets/diffview.nvim'
+        use 'sindrets/diffview.nvim'
 
         -- Auto-completion
         use 'hrsh7th/nvim-cmp'
@@ -28,8 +28,7 @@ return require('packer').startup({
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-path'
         use 'hrsh7th/cmp-cmdline'
-        use 'hrsh7th/cmp-nvim-lsp-signature-help'
-
+        --use 'hrsh7th/cmp-nvim-lsp-signature-help'
         use 'hrsh7th/cmp-nvim-lua'
 
         -- use 'dcampos/nvim-snippy'
@@ -57,15 +56,8 @@ return require('packer').startup({
         use 'rcarriga/nvim-notify'
 
         use 'nvim-tree/nvim-tree.lua'
-        use 'luukvbaal/nnn.nvim'
-        use 'ms-jpq/chadtree'
-        use { 'nvim-neo-tree/neo-tree.nvim', requires = { 'MunifTanjim/nui.nvim' } }
 
-        -- use { 'crispgm/nvim-tabline', config = true }
-
-        -- use 'romgrk/barbar.nvim'
-
-        use 'akinsho/bufferline.nvim'
+        use { 'akinsho/bufferline.nvim' }
     end,
     config = {
         display = {

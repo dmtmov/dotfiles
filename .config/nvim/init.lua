@@ -100,7 +100,7 @@ vim.cmd 'colorscheme rose-pine'
 vim.keymap.set('n', 'q:', '<nop>', opts)
 
 -- Filetree
-vim.keymap.set('n', '<leader>e', ':Lexplore 30<CR><CR>', opts)
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 
 -- Predictable/intuitive navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
@@ -243,19 +243,30 @@ require 'nvim-treesitter.configs'.setup {
 --     colorcolumn = "80",
 -- })
 
-require "nvim-tree".setup()
-require "nnn".setup()
-require "neo-tree".setup()
+require "nvim-tree".setup({
+    renderer = {
+        icons = {
+            show = {
+                file = true,
+                folder = true
+            }
+        }
+    }
+})
 
 
 local null_ls = require("null-ls")
 null_ls.setup({
     sources = {
-        -- null_ls.builtins.completion.spell,
-        -- null_ls.builtins.formatting.prettier,
-        -- null_ls.builtins.formatting.black,
-        -- null_ls.builtins.formatting.isort,
-        -- null_ls.builtins.diagnostics.pylint,
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort.with({
+            config = {
+                args = { "--profile", "black" }
+            }
+        })
+        -- null_ls.builtins.diagnostics.pylint
     },
 })
 
