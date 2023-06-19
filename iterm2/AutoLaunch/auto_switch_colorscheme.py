@@ -4,8 +4,8 @@ import asyncio
 import iterm2
 
 
-DARK_PRESET = "ayu Dark"
-LIGHT_PRESET = "ayu Light"
+DARK_PRESET = "rose-pine"
+LIGHT_PRESET = "rose-pine-dawn"
 
 
 async def update(connection, theme):
