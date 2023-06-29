@@ -14,6 +14,7 @@ config.window_padding = {
   bottom = 0,
 }
 config.tab_bar_at_bottom = true
+config.tab_max_width = 30
 config.window_background_opacity = 1.0
 
 -- Split panes
@@ -53,8 +54,22 @@ config.keys = {
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Down',
   },
+  {
+    key = 'w',
+    mods = 'CMD',
+    action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
 }
-
+config.skip_close_confirmation_for_processes_named = {
+    'bash',
+    'sh',
+    -- 'zsh',
+    -- 'tmux',
+    -- 'nvim',
+    -- 'k9s',
+    -- 'ctop',
+    -- 'ssh'
+}
 
 local function scheme_for_appearance()
 	if wezterm.gui.get_appearance():find 'Dark' then
