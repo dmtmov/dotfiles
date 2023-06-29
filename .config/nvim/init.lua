@@ -132,14 +132,16 @@ require('telescope').setup {
             "./.venv",
         },
         -- path_display = { "smart" },
-        -- layout_strategy = "horizontal",
-        -- layout_config = {
-        --     width = 0.9,
-        --     preview_width = 0.7,
-        -- },
+        layout_strategy = "vertical",
+        layout_config = {
+            width = 0.6,
+            -- preview_width = 0.7,
+            preview_height = 0.6
+        },
     },
     pickers = {
         find_files = {
+            -- Remove `./` from the beginning of each file
             find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
         },
         live_grep = {
