@@ -3,10 +3,10 @@ configs and other dotfiles
 
 
 ```shell
-brew install wget exa bat fd ripgrep jq tree mtr httpie
+brew install wget exa bat fd ripgrep jq tree mtr clipy httpie
 brew install pyright pipenv poetry pyenv
 brew install lazygit lazydocker k9s neovim ranger
-brew install lua-language-server
+brew install lua-language-server yaml-language-server
 ```
 
 * https://github.com/wbthomason/packer.nvim
