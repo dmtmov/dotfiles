@@ -34,7 +34,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 vim.opt.number = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Tabs & indentation
 vim.opt.tabstop = 4
@@ -44,14 +44,14 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.opt.termguicolors = true
 vim.opt.laststatus = 3
 vim.opt.wildmenu = true
+vim.opt.signcolumn = "number"
 
 vim.opt.clipboard = "unnamedplus"
 
@@ -67,6 +67,7 @@ vim.opt.scrolloff = 8
 -- Rullers
 vim.opt.textwidth = 120
 vim.opt.colorcolumn = "80"
+vim.opt.cursorline = true
 
 -- Folding
 vim.opt.foldmethod = "indent"
@@ -85,7 +86,6 @@ vim.keymap.set({ 'n', 'v', 'i' }, '<Left>', '<Nop>')
 vim.keymap.set({ 'n', 'v', 'i' }, '<Right>', '<Nop>')
 
 -- Navigate over splits
-vim.keymap.set('n', '<C-w>', '<C-w><C-w>')
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
@@ -97,10 +97,14 @@ vim.keymap.set({ 'n', 'v' }, 'q:', '<nop>', opts)
 -- Open Filetree
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 
+-- Open Terminal in new window
+vim.keymap.set('n', '<leader>T', ':terminal<CR>', opts)
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>') -- leave insert mode in terminal
+
 -- Disable highlight
 vim.keymap.set('n', '<esc>', ':noh<cr>', opts)
 
-vim.keymap.set('n', '<leader>T', ':tabnew<CR>', opts)
+vim.keymap.set('n', '<leader>t', ':tabnew<CR>', opts)
 vim.keymap.set('n', '<leader>n', ':bnext<CR>', opts)
 vim.keymap.set('n', '<leader>p', ':bprev<CR>', opts)
 vim.keymap.set('n', '<leader>bd', ':bdelete | bNext<CR>', opts)
@@ -153,19 +157,22 @@ require('pckr').add {
     },
 
     -- Colorschemes
-    { "ellisonleao/gruvbox.nvim" },
-    { "rose-pine/neovim",            name = "rose-pine" },
-    { "f-person/auto-dark-mode.nvim" },
+    { "ellisonleao/gruvbox.nvim",   opts = { contrast = "hard" } },
+
+    { "rose-pine/neovim",           name = "rose-pine" },
+    { "Shatur/neovim-ayu" },
+    { "projekt0n/github-nvim-theme" },
 
     -- Misc
-    "echasnovski/mini.nvim",
+    { "echasnovski/mini.nvim",      veresion = '*' },
+    "wakatime/vim-wakatime",
+    "luckasRanarison/tailwind-tools.nvim",
 }
 -------------------------------------------------------------------------------
 -- Mini
 
--- require 'mini.statusline'.setup {}
+require('mini.statusline').setup {}
 require('mini.tabline').setup {}
-require('mini.comment').setup {}
 require('mini.cursorword').setup {}
 require('mini.indentscope').setup {}
 require('mini.pairs').setup {}
@@ -177,35 +184,42 @@ require('mini.pairs').setup {}
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup({ renderer = { icons = { show = { file = false, folder = false } } } })
+require("nvim-tree").setup({
+    renderer = { icons = { show = { file = false, folder = false } } }
+})
 
 -------------------------------------------------------------------------------
 -- Treesitter
 
--- require('nvim-treesitter.configs').setup {
---     ensure_installed = {
---         'python',
---         'swift',
---         'javascript',
---         'typescript',
---         'lua',
---         'html',
---         'css',
---         'json',
---         'yaml',
---         'toml',
---         'sql',
---         'vim',
---         'go'
---     },
---     highlight = {
---         additional_vim_regex_highlighting = true,
---     },
---     incremental_selection = { enable = true },
---     indent = { enable = true },
---     matchup = { enable = true },
---     autopairs = { enable = true }
--- }
+require('nvim-treesitter.configs').setup {
+    ensure_installed = {
+        'python',
+        'javascript',
+        'typescript',
+        'lua',
+        'html',
+        'go',
+        'gomod',
+        'gosum',
+        'css',
+        'json',
+        'yaml',
+        'toml',
+        'markdown',
+        'git_config',
+        'gitignore',
+        'sql',
+        'vim',
+    },
+    highlight = {
+        additional_vim_regex_highlighting = true,
+        enable = true
+    },
+    incremental_selection = { enable = true },
+    indent = { enable = true },
+    matchup = { enable = true },
+    autopairs = { enable = true }
+}
 
 -------------------------------------------------------------------------------
 -- LSP
@@ -215,14 +229,14 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(_, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
     -- lsp_zero.buffer_autoformat()
-    vim.keymap.set('n', '<leader>f', vim.diagnostic.open_float, { buffer = bufnr })
-    vim.keymap.set('n', 'gf', vim.lsp.buf.format, { buffer = bufnr })
+    vim.keymap.set('n', 'gf', vim.diagnostic.open_float, { buffer = bufnr })
+    vim.keymap.set('n', 'gF', vim.lsp.buf.format, { buffer = bufnr })
     vim.keymap.set('n', 'gca', vim.lsp.buf.code_action, { buffer = bufnr })
 end)
 
 require("mason").setup {}
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "ruff_lsp", "tsserver", "html", "yamlls" },
+    ensure_installed = { "lua_ls", "pyright", "tsserver", "html", "yamlls", "gopls" },
     handlers = {
         lsp_zero.default_setup,
         ['lua_ls'] = function()
@@ -246,8 +260,8 @@ require("mason-lspconfig").setup {
 -- Completions
 
 local cmp = require('cmp')
-local cmp_format = require('lsp-zero').cmp_format()
-local cmp_action = require('lsp-zero').cmp_action()
+local cmp_format = lsp_zero.cmp_format()
+local cmp_action = lsp_zero.cmp_action()
 
 cmp.setup({
     sources = {
@@ -259,8 +273,8 @@ cmp.setup({
     },
     mapping = cmp.mapping.preset.insert {
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-u>"] = cmp.mapping.scroll_docs(4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<Tab>"] = cmp_action.tab_complete(),
         ["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
     },
@@ -291,50 +305,64 @@ require("telescope").setup {
             override_file_sorter = true,
             case_mode = "smart_case",
         },
+    },
+    pickers = {
+        buffers = {
+            theme = "dropdown",
+        },
+        diagnostics = {
+            theme = "ivy"
+        }
+    },
+    defaults = {
+        layout_config = {
+            -- width = 0.8,
+            -- height = 0.9,
+            -- preview_cutoff = 120,
+            -- prompt_position = "bottom"
+        },
+        layout_strategy = 'vertical'
     }
 }
 require('telescope').load_extension('fzf')
 
 local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>', ':Telescope<CR>', opts)
 vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
-vim.keymap.set('n', '<leader>fr', builtin.lsp_workspace_symbols, opts)
-
--- these shortcuts are taken from kickstart.nvim
-vim.keymap.set('n', '<leader>sk', builtin.keymaps)
-vim.keymap.set('n', '<leader>ss', builtin.builtin)
-vim.keymap.set('n', '<leader>sw', builtin.grep_string)
-vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
-vim.keymap.set('n', '<leader>sr', builtin.resume)
-vim.keymap.set('n', '<leader>s.', builtin.oldfiles)
 
 -------------------------------------------------------------------------------
 -- Colorscheme
 
-local auto_dark_mode = require('auto-dark-mode')
+local function isDarkMode()
+    local file = io.popen('defaults read -g AppleInterfaceStyle', 'r')
+    local output = file:read('*all')
+    file:close() -- no way to be nil
 
-auto_dark_mode.setup({
-    update_interval = 1000,
-    set_dark_mode = function()
+    if output:match("Dark") then
+        return true
+    else
+        return false
+    end
+end
+
+local function checkAppearance(dark_scheme, light_scheme)
+    -- The func doesn't observe for system appearance but gets it on call.
+    if isDarkMode() then
         vim.api.nvim_set_option('background', 'dark')
-        vim.cmd('colorscheme gruvbox')
-    end,
-    set_light_mode = function()
+        vim.cmd('colorscheme ' .. dark_scheme)
+    else
         vim.api.nvim_set_option('background', 'light')
-        vim.cmd('colorscheme rose-pine-dawn')
-    end,
-})
+        vim.cmd('colorscheme ' .. light_scheme)
+    end
+end
 
--- vim.cmd("colorscheme rose-pine-dawn")
--- vim.cmd("colorscheme rose-pine-moon")
--- vim.cmd("colorscheme quite")
--- vim.cmd("colorscheme habamax")
--- vim.cmd("colorscheme randomhue")
--- vim.cmd("colorscheme gruvbox")
--- vim.cmd("colorscheme minischeme")
-
+checkAppearance(
+    'github_dark_default',
+    'github_light_default'
+)
+-- require('ayu').colorscheme({ mirage = true })
 -------------------------------------------------------------------------------
 -- Notify
 
