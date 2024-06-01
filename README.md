@@ -7,6 +7,7 @@ brew install wget exa bat fd ripgrep jq tree mtr clipy httpie
 brew install pyright pipenv poetry pyenv
 brew install lazygit lazydocker k9s neovim ranger
 brew install lua-language-server yaml-language-server
+brew install lua-language-server taplo
 ```
 
 * https://github.com/wbthomason/packer.nvim
@@ -15,6 +16,7 @@ brew install lua-language-server yaml-language-server
 ```
 npm install -g dockerfile-language-server-nodejs
 npm install -g typescript typescript-language-server
+npm install -g yaml-language-server
 npm install -g vscode-css-languageserver-bin
 npm install -g vscode-html-languageserver-bin
 npm install -g vscode-json-languageserver
