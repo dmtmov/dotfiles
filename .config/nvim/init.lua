@@ -66,7 +66,7 @@ vim.opt.scrolloff = 8
 
 -- Rullers
 vim.opt.textwidth = 120
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "-40,-20,-0"
 vim.opt.cursorline = true
 
 -- Folding
@@ -162,16 +162,20 @@ require('pckr').add {
     { "rose-pine/neovim",           name = "rose-pine" },
     { "Shatur/neovim-ayu" },
     { "projekt0n/github-nvim-theme" },
-
+    { "rebelot/kanagawa.nvim" },
+    { "sainnhe/everforest" },
+    { "xero/miasma.nvim" },
+    { "maxmx03/solarized.nvim" },
+    { "shaunsingh/nord.nvim" },
     -- Misc
     { "echasnovski/mini.nvim",      veresion = '*' },
     "wakatime/vim-wakatime",
-    "luckasRanarison/tailwind-tools.nvim",
 }
+
 -------------------------------------------------------------------------------
 -- Mini
 
-require('mini.statusline').setup {}
+-- require('mini.statusline').setup {}
 require('mini.tabline').setup {}
 require('mini.cursorword').setup {}
 require('mini.indentscope').setup {}
@@ -236,7 +240,7 @@ end)
 
 require("mason").setup {}
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "pyright", "tsserver", "html", "yamlls", "gopls" },
+    ensure_installed = { "lua_ls", "pyright", "tsserver", "html", "yamlls", "gopls", "bashls" },
     handlers = {
         lsp_zero.default_setup,
         ['lua_ls'] = function()
@@ -249,6 +253,11 @@ require("mason-lspconfig").setup {
                         },
                     },
                 },
+            })
+        end,
+        ['bashls'] = function()
+            require('lspconfig').bashls.setup({
+                filetypes = { "sh", "zsh", "bash" }
             })
         end,
         -- check `lsp-zero` docs before adding custom LSP configs
@@ -347,7 +356,7 @@ local function isDarkMode()
     end
 end
 
-local function checkAppearance(dark_scheme, light_scheme)
+local function toggleAppearance(dark_scheme, light_scheme)
     -- The func doesn't observe for system appearance but gets it on call.
     if isDarkMode() then
         vim.api.nvim_set_option('background', 'dark')
@@ -358,10 +367,37 @@ local function checkAppearance(dark_scheme, light_scheme)
     end
 end
 
-checkAppearance(
-    'github_dark_default',
-    'github_light_default'
-)
+-- Color scheme settings - Rose Pine
+require("rose-pine").setup({
+    dark_variant = "main",
+    dim_inactive_windows = true,
+    styles = {
+        transparency = false
+    },
+    highlight_groups = {
+        StatusLine = { fg = "love", bg = "love", blend = 10 },
+        StatusLineNC = { fg = "subtle", bg = "surface" },
+    },
+})
+vim.opt.statusline = " %f %m %= %l:%c ♥ "
+
+-- Color scheme settings - Everforest
+-- vim.g.everforest_background = 'medium'
+-- vim.g.everforest_better_performance = 1
+-- vim.cmd("set background=dark")
+
+-- Color scheme settings - Nord
+-- vim.g.nord_contrast = true
+-- vim.g.nord_borders = true
+-- vim.g.nord_disable_background = false
+-- vim.g.nord_italic = true
+-- vim.g.nord_bold = true
+-- require('nord').set()
+
+-- toggleAppearance(
+--     'github_dark_default',
+--     'github_light_default'
+-- )
 -- require('ayu').colorscheme({ mirage = true })
 -------------------------------------------------------------------------------
 -- Notify
