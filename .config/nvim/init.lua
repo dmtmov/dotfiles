@@ -49,9 +49,10 @@ vim.opt.wrap = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.wildmenu = true
 vim.opt.signcolumn = "number"
+vim.opt.cmdheight = 0
 
 vim.opt.clipboard = "unnamedplus"
 
@@ -95,7 +96,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
 vim.keymap.set({ 'n', 'v' }, 'q:', '<nop>', opts)
 
 -- Open Filetree
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
+-- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 
 -- Open Terminal in new window
 vim.keymap.set('n', '<leader>T', ':terminal<CR>', opts)
@@ -157,8 +158,7 @@ require('pckr').add {
     },
 
     -- Colorschemes
-    { "ellisonleao/gruvbox.nvim",   opts = { contrast = "hard" } },
-
+    { "ellisonleao/gruvbox.nvim" },
     { "rose-pine/neovim",           name = "rose-pine" },
     { "Shatur/neovim-ayu" },
     { "projekt0n/github-nvim-theme" },
@@ -175,22 +175,22 @@ require('pckr').add {
 -------------------------------------------------------------------------------
 -- Mini
 
--- require('mini.statusline').setup {}
-require('mini.tabline').setup {}
+-- require('mini.statusline').setup()
+-- require('mini.tabline').setup {}
 require('mini.cursorword').setup {}
-require('mini.indentscope').setup {}
+-- require('mini.indentscope').setup {}
 require('mini.pairs').setup {}
 
 -------------------------------------------------------------------------------
 -- File explorer
 
 -- disable netrw at the very start
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup({
-    renderer = { icons = { show = { file = false, folder = false } } }
-})
+-- require("nvim-tree").setup({
+--     renderer = { icons = { show = { file = false, folder = false } } }
+-- })
 
 -------------------------------------------------------------------------------
 -- Treesitter
@@ -205,21 +205,48 @@ require('nvim-treesitter.configs').setup {
         'go',
         'gomod',
         'gosum',
+        'gotmpl',
+        'gowork',
         'css',
+        'scss',
+        'svelte',
+        'vue',
         'json',
         'yaml',
         'toml',
+        'xml',
+        'helm',
         'markdown',
+        'markdown_inline',
         'git_config',
         'gitignore',
+        'gitattributes',
         'sql',
         'vim',
+        'bash',
+        'dockerfile',
+        'terraform',
+        'regex',
+
+        'gleam',
+        'zig',
+        'rust',
+        'ocaml',
+        'scala'
     },
     highlight = {
         additional_vim_regex_highlighting = true,
         enable = true
     },
-    incremental_selection = { enable = true },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<M-space>",
+            node_incremental = "<M-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+        },
+    },
     indent = { enable = true },
     matchup = { enable = true },
     autopairs = { enable = true }
@@ -240,7 +267,7 @@ end)
 
 require("mason").setup {}
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "pyright", "tsserver", "html", "yamlls", "gopls", "bashls" },
+    ensure_installed = { "lua_ls", "pyright", "ruff_lsp", "tsserver", "html", "yamlls", "gopls", "bashls" },
     handlers = {
         lsp_zero.default_setup,
         ['lua_ls'] = function()
@@ -258,6 +285,19 @@ require("mason-lspconfig").setup {
         ['bashls'] = function()
             require('lspconfig').bashls.setup({
                 filetypes = { "sh", "zsh", "bash" }
+            })
+        end,
+        ['gopls'] = function()
+            require('lspconfig').gopls.setup({
+                settings = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true,
+                        },
+                        staticcheck = true,
+                        gofumpt = true,
+                    },
+                },
             })
         end,
         -- check `lsp-zero` docs before adding custom LSP configs
@@ -318,25 +358,34 @@ require("telescope").setup {
     pickers = {
         buffers = {
             theme = "dropdown",
+            previewer = false,
+            layout_config = {
+                prompt_position = "top"
+            },
         },
         diagnostics = {
-            theme = "ivy"
-        }
-    },
-    defaults = {
-        layout_config = {
-            -- width = 0.8,
-            -- height = 0.9,
-            -- preview_cutoff = 120,
-            -- prompt_position = "bottom"
+            theme = "ivy",
+            previewer = false,
         },
-        layout_strategy = 'vertical'
-    }
+        find_files = {
+            theme = "dropdown",
+            previewer = false,
+            layout_config = {
+                prompt_position = "top"
+            },
+        },
+        live_grep = {
+            layout_strategy = 'vertical',
+        },
+    },
 }
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('file_browser')
+
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>', ':Telescope<CR>', opts)
+vim.keymap.set('n', '<leader>d', builtin.diagnostics, opts)
 vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
@@ -370,16 +419,12 @@ end
 -- Color scheme settings - Rose Pine
 require("rose-pine").setup({
     dark_variant = "main",
-    dim_inactive_windows = true,
-    styles = {
-        transparency = false
-    },
     highlight_groups = {
         StatusLine = { fg = "love", bg = "love", blend = 10 },
         StatusLineNC = { fg = "subtle", bg = "surface" },
     },
 })
-vim.opt.statusline = " %f %m %= %l:%c ♥ "
+-- vim.opt.statusline = " %f %m %= %l:%c ♥  "
 
 -- Color scheme settings - Everforest
 -- vim.g.everforest_background = 'medium'
@@ -394,11 +439,15 @@ vim.opt.statusline = " %f %m %= %l:%c ♥ "
 -- vim.g.nord_bold = true
 -- require('nord').set()
 
--- toggleAppearance(
---     'github_dark_default',
---     'github_light_default'
--- )
--- require('ayu').colorscheme({ mirage = true })
+-- Color scheme settings - Gruvbox
+require('gruvbox').setup { contrast = "hard" }
+require('solarized').setup({ theme = "default", transparent = false })
+
+toggleAppearance(
+    'gruvbox',
+    'default'
+)
+-- require('ayu').colorscheme({})
 -------------------------------------------------------------------------------
 -- Notify
 
