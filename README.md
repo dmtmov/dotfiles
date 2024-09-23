@@ -3,13 +3,14 @@ configs and other dotfiles
 
 
 ```shell
-brew install wget exa bat fd ripgrep jq tree mtr clipy httpie
+brew install wget eza bat fd ripgrep jq tree mtr clipy httpie
 brew install pyright pipenv poetry pyenv
 brew install lazygit lazydocker k9s neovim ranger
 brew install lua-language-server yaml-language-server
 brew install lua-language-server taplo
 ```
 
+* https://github.com/loteoo/ks
 * https://github.com/wbthomason/packer.nvim
 * https://github.com/nvm-sh/nvm
 
