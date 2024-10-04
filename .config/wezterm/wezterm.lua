@@ -5,72 +5,9 @@ config.font_size = 16
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 50
-
 config.scrollback_lines = 99999
 
--- Split panes
-config.keys = {
-    {
-        key = 'd',
-        mods = 'CMD|SHIFT',
-        action = wezterm.action.SplitVertical
-    },
-    {
-        key = 'd',
-        mods = 'CMD',
-        action = wezterm.action.SplitHorizontal
-    },
-    {
-        key = 'Enter',
-        mods = 'CMD|SHIFT',
-        action = wezterm.action.TogglePaneZoomState,
-    },
-    {
-        key = 'LeftArrow',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Left',
-    },
-    {
-        key = 'RightArrow',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Right',
-    },
-    {
-        key = 'UpArrow',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Up',
-    },
-    {
-        key = 'DownArrow',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Down',
-    },
-    {
-        key = 'h',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Left',
-    },
-    {
-        key = 'l',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Right',
-    },
-    {
-        key = 'k',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Up',
-    },
-    {
-        key = 'j',
-        mods = 'CMD',
-        action = wezterm.action.ActivatePaneDirection 'Down',
-    },
-    {
-        key = 'w',
-        mods = 'CMD',
-        action = wezterm.action.CloseCurrentPane { confirm = true },
-    },
-}
+config.keys = require'keys'
 config.mouse_bindings = {
     {
         event = { Up = { streak = 1, button = "Left" } },

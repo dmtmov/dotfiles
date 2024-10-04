@@ -3,7 +3,7 @@ local act = wezterm.action
 
 local M = {}
 
-M.bindings = {
+M = {
     {
         key = 'd',
         mods = 'CMD|SHIFT',
@@ -69,20 +69,20 @@ M.bindings = {
     { key = "f", mods = "CMD|CTRL",  action = "ToggleFullScreen" },
     { key = " ", mods = "CMD|SHIFT", action = wezterm.action.QuickSelect },
     { key = "z", mods = "CMD",       action = wezterm.action.TogglePaneZoomState },
-    -- {
-    --     key = "h",
-    --     mods = "CMD|SHIFT",
-    --     action = wezterm.action_callback(function(window, pane)
-    --         local overrides = window:get_config_overrides() or {}
-    --         if not overrides.window_decorations
-    --             or overrides.window_decorations == "TITLE | RESIZE" then
-    --             overrides.window_decorations = "RESIZE"
-    --         else
-    --             overrides.window_decorations = "TITLE | RESIZE"
-    --         end
-    --         window:set_config_overrides(overrides)
-    --     end),
-    -- },
+    {
+        key = "h",
+        mods = "CMD|SHIFT",
+        action = wezterm.action_callback(function(window, pane)
+            local conf = window:get_config_overrides() or {}
+            if not conf.window_decorations
+                or conf.window_decorations == "TITLE | RESIZE" then
+                conf.window_decorations = "RESIZE"
+            else
+                conf.window_decorations = "TITLE | RESIZE"
+            end
+            window:set_config_overrides(conf)
+        end),
+    },
 }
 
 return M
